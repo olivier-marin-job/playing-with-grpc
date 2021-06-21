@@ -1,0 +1,52 @@
+.idea
+
+#====================================
+#java related files to be ignored
+#====================================
+java-grpc/.idea
+java-grpc/*.class
+java-grpc/*.war
+java-grpc/*.log*
+java-grpc/.build
+java-grpc/.revision
+
+java-grpc/.gradle/
+java-grpc/bin/
+java-grpc/build/
+java-grpc/deploy/
+java-grpc/*.iml
+
+java-grpc/.classpath
+java-grpc/.project
+java-grpc/.settings
+
+java-grpc/*.DS_Store
+java-grpc/classes/
+
+java-grpc/out/
+java-grpc/gradle.properties
+
+#====================================
+#react related files to be ignored
+#====================================
+react-grpc/.idea
+react-grpc/node_modules
+react-grpc/.pnp
+react-grpc/.pnp.js
+
+# testing
+react-grpc/coverage
+
+# production
+react-grpc/build
+
+# misc
+react-grpc/.DS_Store
+react-grpc/.env.local
+react-grpc/.env.development.local
+react-grpc/.env.test.local
+react-grpc/.env.production.local
+
+react-grpc/npm-debug.log*
+react-grpc/yarn-debug.log*
+react-grpc/yarn-error.log*
