@@ -43,12 +43,12 @@ public class GreetingClient {
         // prepare calculation service
         calcService = CalculatorServiceGrpc.newBlockingStub(channel);
 
-//        doUnaryCall();
+        doUnaryCall();
 //        doServerStreamingCall();
 //        doClientStreamingCall();
 //        doBidirectionalStreamingCall();
 //        doTheCalculationCalls();
-        doCalculationErrorCall();
+//        doCalculationErrorCall();
     }
 
     public void shutdown(){

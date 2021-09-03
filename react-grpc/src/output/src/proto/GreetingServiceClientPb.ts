@@ -16,7 +16,7 @@ import * as grpcWeb from 'grpc-web';
 import * as src_proto_greeting_pb from '../../src/proto/greeting_pb';
 
 
-export class GreetingServiceClient {
+export class GreetServiceClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
   credentials_: null | { [index: string]: string; };
@@ -35,7 +35,7 @@ export class GreetingServiceClient {
     this.options_ = options;
   }
 
-  methodInfogreet = new grpcWeb.AbstractClientBase.MethodInfo(
+  methodInfoGreet = new grpcWeb.AbstractClientBase.MethodInfo(
     src_proto_greeting_pb.GreetResponse,
     (request: src_proto_greeting_pb.GreetRequest) => {
       return request.serializeBinary();
@@ -61,18 +61,37 @@ export class GreetingServiceClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/greet.GreetingService/greet',
+          '/greet.GreetService/Greet',
         request,
         metadata || {},
-        this.methodInfogreet,
+        this.methodInfoGreet,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/greet.GreetingService/greet',
+      '/greet.GreetService/Greet',
     request,
     metadata || {},
-    this.methodInfogreet);
+    this.methodInfoGreet);
+  }
+
+  methodInfoGreetManyTimes = new grpcWeb.AbstractClientBase.MethodInfo(
+    src_proto_greeting_pb.GreetManyTimesResponse,
+    (request: src_proto_greeting_pb.GreetManyTimesRequest) => {
+      return request.serializeBinary();
+    },
+    src_proto_greeting_pb.GreetManyTimesResponse.deserializeBinary
+  );
+
+  greetManyTimes(
+    request: src_proto_greeting_pb.GreetManyTimesRequest,
+    metadata?: grpcWeb.Metadata) {
+    return this.client_.serverStreaming(
+      this.hostname_ +
+        '/greet.GreetService/GreetManyTimes',
+      request,
+      metadata || {},
+      this.methodInfoGreetManyTimes);
   }
 
 }

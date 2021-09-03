@@ -4,3 +4,6 @@ services:
     image: envoyproxy/envoy-dev:b145180d17cac80aa5f9a7801429d52017fea6d1
     volumes:
       - ./envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "8080:8080"
+      - "9901:9901"

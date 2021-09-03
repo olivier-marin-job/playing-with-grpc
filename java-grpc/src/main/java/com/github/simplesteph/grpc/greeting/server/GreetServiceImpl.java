@@ -7,6 +7,7 @@ public class GreetServiceImpl extends GreetServiceGrpc.GreetServiceImplBase {
 
     @Override
     public void greet(GreetRequest request, StreamObserver<GreetResponse> responseObserver) {
+        System.out.println("Reached service implementation :)");
         Greeting greeting = request.getGreeting();
 
         String result = "Hello " + greeting.getFirstName();
