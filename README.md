@@ -42,3 +42,15 @@ $ java -jar ./build/libs/udemy-grpc-1.0-SNAPSHOT-all.jar
 ![gRPC JAVA](images/gradle-grpc.png)
 
 ### Transpiler le projet React
+
+```shell
+$ npm install
+$ npm start
+$ export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+### Lancer le docker compose
+
+```shell
+$ docker-compose up
+```
