@@ -48,12 +48,15 @@ $ npm install
 $ npm start
 $ export NODE_OPTIONS=--openssl-legacy-provider
 ```
+![gRPC React](images/react-grpc.png)
 
 ### Lancer le docker compose
 
 ```shell
 $ docker-compose up
 ```
+
+![gRPC Docker Compose](images/docker-compose-grpc.png)
 
 ### Requête pour changer le niveau du logger http d'envoy
 
