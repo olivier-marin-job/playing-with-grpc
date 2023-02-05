@@ -54,3 +54,10 @@ $ export NODE_OPTIONS=--openssl-legacy-provider
 ```shell
 $ docker-compose up
 ```
+
+### Requête pour changer le niveau du logger http d'envoy
+
+```shell
+$ curl -X POST http://localhost:9901/logging?http=debug
+$ curl -X POST http://localhost:9901/logging?http2=debug
+```
