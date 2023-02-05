@@ -9,6 +9,7 @@ public class GreetingServer {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         final int PORT = 9090;
+
         System.out.println("Hello gRPC, used port: "+PORT);
 
         Server server = ServerBuilder.forPort(PORT)
@@ -16,6 +17,8 @@ public class GreetingServer {
                 .addService(new CalculatorServiceImpl())
                 .build();
         server.start();
+
+        System.out.println("Server started !");
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             System.out.println("Received shut down request");

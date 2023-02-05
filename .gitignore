@@ -50,3 +50,5 @@ react-grpc/.env.production.local
 react-grpc/npm-debug.log*
 react-grpc/yarn-debug.log*
 react-grpc/yarn-error.log*
+
+java-grpc/src/main/java/com/proto

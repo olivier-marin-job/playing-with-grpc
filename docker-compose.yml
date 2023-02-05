@@ -1,0 +1,26 @@
+version: '3'
+services:
+  envoy:
+    image: envoyproxy/envoy-dev:b145180d17cac80aa5f9a7801429d52017fea6d1
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+    ports:
+      - "8080:8080"
+      - "9901:9901"
+    networks:
+      - grpc_network
+    depends_on:
+      - java
+  java:
+    image: openjdk:8-jdk-alpine
+    volumes:
+      - ./java-grpc/build/libs/udemy-grpc-1.0-SNAPSHOT-all.jar:/udemy-grpc-1.0-SNAPSHOT-all.jar
+    ports:
+      - 9090:9090
+    command: ['java', '-jar', '/udemy-grpc-1.0-SNAPSHOT-all.jar']
+    restart: always
+    networks:
+      - grpc_network
+
+networks:
+  grpc_network: {}
