@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.google.protobuf' version '0.8.14'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
     id 'idea'
 }
 
@@ -37,10 +38,20 @@ dependencies {
 
 // if you have source imports issues, add the below
 sourceSets.main.java.srcDir new File(buildDir, 'generated/source')
+
 idea {
     module {
         // Marks the already(!) added srcDir as "generated"
         generatedSourceDirs += file('build/generated/source')
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.github.simplesteph.grpc.greeting.server.GreetingServer'
+        )
     }
 }
 
