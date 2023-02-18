@@ -1,6 +1,6 @@
 ## I. <u>Serveur gRPC Java</u>
 
-#### 1. <u>Générer les sources gRPC Java</u>
+#### 1.a. <u>Générer les sources gRPC Java</u>
 
 Lien: [Plugin gRPC JAVA](https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.52.1/)
 
@@ -16,20 +16,20 @@ Ou utiliser le plugin gradle
 $ sh gradlew build
 ```
 
-#### 2.a. <u>Lister les utilitaires fournis par Gradle</u>
+#### 1.b. <u>Lister les utilitaires fournis par Gradle</u>
 
 ```shell
 $ cd java-grpc
 $ sh gradlew tasks 
 ```
-#### 2.b. <u>Compiler java-grpc avec Gradle</u>
+#### 1.c. <u>Compiler java-grpc avec Gradle</u>
 
 ```shell
 $ cd java-grpc
 $ sh gradlew build 
 ```
 
-#### 2.c. <u>Lancer java-grpc depuis la console</u>
+#### 1.d. <u>Lancer java-grpc depuis la console</u>
 
 ```shell
 $ cd java-grpc
@@ -39,39 +39,60 @@ $ java -jar ./build/libs/udemy-grpc-1.0-SNAPSHOT-all.jar
 
 ![gRPC JAVA](images/gradle-grpc.png)
 
-#### 2.d. <u>Lancer le projet Gradle sous docker</u>
+#### 1.e. <u>Lancer java-grpc depuis docker</u>
 
 ```shell
 $ docker build -t java-grpc:v1 .
-$ docker run --name grpc-java --rm -dit java-grpc:v1
-$ docker container logs grpc-java
+$ docker run --name java-grpc -p 9090:9090 --rm -dit java-grpc:v1
+$ docker container logs java-grpc
 ```
 
 ![gRPC JAVA Docker](images/grpc-java-docker.png)
 
-#### 2.e. <u>Lancer le projet Gradle sous docker en mode interactif</u>
+#### 1.g. <u>Arrêter et supprimer java-grpc</u>
+
+```shell
+$ docker stop java-grpc
+```
+
+#### 1.g. <u>Lancer java-grpc depuis docker en mode interactif</u>
 
 ```shell
 $ docker build -t java-grpc:v1 .
-$ docker run --name grpc-java --rm -it --entrypoint /bin/sh java-grpc:v1
+$ docker run --name java-grpc --rm -it --entrypoint /bin/sh java-grpc:v1
 # java -jar udemy-grpc-1.0-SNAPSHOT-all.jar
 ```
 
 ## II. <u>Client gRPC React</u>
 
-#### Transpiler le projet React
+#### 2.a <u>Compiler react-grpc avec npm depuis la console</u>
 
 ```shell
-$ npm install
-$ npm start
-$ export NODE_OPTIONS=--openssl-legacy-provider
+$ cd react-grpc
+$ npm run build
+$ npm run start
 ```
+
 ![gRPC React](images/react-grpc.png)
 
-#### Lancer le docker compose
+Remarque:
 
 ```shell
-$ docker-compose up
+$ export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+#### 2.b. <u>Lancer react-grpc depuis docker</u>
+
+```shell
+$ cd react-grpc
+$ docker build -t react-grpc:v1 .
+docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
+```
+
+#### 2.c. <u>Arrêter et supprimer react-grpc</u>
+
+```shell
+$ docker stop react-grpc
 ```
 
 ![gRPC Docker Compose](images/docker-compose-grpc.png)
