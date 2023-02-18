@@ -12,10 +12,10 @@ function App() {
   const test= () => {
     const req = new GreetRequest();
     const greet = new Greeting();
-    greet.setFirstName("slimen qsdqsdqsd");
-    greet.setLastName("arnaout");
+    greet.setFirstName("Olivier");
+    greet.setLastName("Marin");
     req.setGreeting(greet);
-    const client = new GreetServiceClient('http://172.18.0.2:9090').greet(req, {}, (err, response: GreetResponse) => {
+    const client = new GreetServiceClient('http://localhost:8080').greet(req, {}, (err, response: GreetResponse) => {
       console.log(response.getResult());
     });
 

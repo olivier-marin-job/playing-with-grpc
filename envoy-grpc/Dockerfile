@@ -1,4 +1,4 @@
-FROM envoyproxy/envoy-dev:b145180d17cac80aa5f9a7801429d52017fea6d1
+FROM envoyproxy/envoy:v1.21-latest
 
 # Copy the envoy configuration
 
@@ -8,12 +8,12 @@ RUN chmod go+r /etc/envoy/envoy.yaml
 
 # Create envoy log file
 
-RUN mkdir logs
+WORKDIR /logs
 
-RUN touch logs/envoy.log
+RUN touch envoy.log
 
-RUN chmod go+rw logs/envoy.log
+RUN chmod go+rw envoy.log
 
 # Run envoy
 
-CMD envoy -c /etc/envoy/envoy.yaml --log-level trace --log-path logs/envoy.log
+CMD envoy -c /etc/envoy/envoy.yaml --log-level trace --log-path /logs/envoy.log
