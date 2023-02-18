@@ -15,7 +15,7 @@ function App() {
     greet.setFirstName("slimen qsdqsdqsd");
     greet.setLastName("arnaout");
     req.setGreeting(greet);
-    const client = new GreetServiceClient('http://localhost:8080').greet(req, {}, (err, response: GreetResponse) => {
+    const client = new GreetServiceClient('http://172.18.0.2:9090').greet(req, {}, (err, response: GreetResponse) => {
       console.log(response.getResult());
     });
 
