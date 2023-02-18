@@ -49,12 +49,6 @@ $ docker container logs grpc-java
 
 ![gRPC JAVA Docker](images/grpc-java-docker.png)
 
-```shell
-$ docker build -t java-grpc:v1 .
-$ docker run --name grpc-java --rm -dit java-grpc:v1
-$ docker container logs grpc-java
-```
-
 #### 2.e. <u>Lancer le projet Gradle sous docker en mode interactif</u>
 
 ```shell
