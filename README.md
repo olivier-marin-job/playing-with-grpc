@@ -69,6 +69,7 @@ $ docker run --name java-grpc --rm -it --entrypoint /bin/sh java-grpc:v1
 
 ```shell
 $ cd react-grpc
+$ nvm use lts/gallium
 $ npm run build
 $ npm run start
 ```
@@ -85,6 +86,8 @@ $ export NODE_OPTIONS=--openssl-legacy-provider
 
 ```shell
 $ cd react-grpc
+$ nvm use lts/gallium
+$ npm run build
 $ docker build -t react-grpc:v1 .
 $ docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
 ```
@@ -131,11 +134,72 @@ Conteneur backend gRPC React:
 
 ## IV. <u>Proxy Envoy</u>
 
-#### Requête pour changer le niveau du logger http d'envoy
+#### 4.b. <u>Mettre-à-jour react-grpc depuis docker</u>
+
+```typescript
+App.tsx:18 const client = new GreetServiceClient('http://locahost:8080')
+```
+
+```shell
+$ cd react-grpc
+$ npm run build
+$ docker build -t react-grpc:v1 .
+$ docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
+```
+
+#### 4.b. <u>Lancer envoy-grpc depuis docker</u>
+
+```shell
+$ cd envoy-grpc
+$ docker build -t envoy-grpc:v1 .
+$ docker run --name envoy-grpc \
+  --net grpc \
+  --ip 172.18.0.4 \
+  -p 9901:9901 \
+  --rm -dit envoy-grpc:v1
+```
+
+#### 4.c. <u>Changer le niveau du logger http d'envoy<u>
 
 ```shell
 $ curl -X POST http://localhost:9901/logging?http=debug
 $ curl -X POST http://localhost:9901/logging?http2=debug
 ```
+#### 4.d. <u>Insérer le proxy envoy dans le conteneur<u>
+
+```shell
+$ docker network create --subnet=172.18.0.0/24 grpc
+
+$ docker run --name java-grpc \
+  --net grpc \
+  --ip 172.18.0.10 \
+  -p 9090:9090 \
+  --rm -dit java-grpc:v1
+
+$ docker run --name react-grpc \
+  --net grpc \
+  --ip 172.18.0.11 \
+  -p 3000:3000 \
+  --rm -dit react-grpc:v1
+
+$ docker build -t envoy-grpc:v1 .
+  
+$ docker run --name envoy-grpc \
+  --net grpc \
+  --ip 172.18.0.12 \
+  -p 9901:9901 \
+  -p 8080:8080 \
+  --rm -dit envoy-grpc:v1  
+```
+
+Appel gRPC:
+
+![appel-grpc-envoy.png](images%2Fappel-grpc-envoy.png)
+
+Enregistrement côté envoy:
+
+![log-envoy.png](images%2Flog-envoy.png)
 
 ## V. <u>Docker Compose</u>
+
+A venir...
