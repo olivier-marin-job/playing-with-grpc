@@ -73,13 +73,13 @@ $ npm run build
 $ npm run start
 ```
 
-![gRPC React](images/react-grpc.png)
-
 Remarque:
 
 ```shell
 $ export NODE_OPTIONS=--openssl-legacy-provider
 ```
+
+![react-grpc-docker.png](images/react-grpc-docker.png)
 
 #### 2.b. <u>Lancer react-grpc depuis docker</u>
 
@@ -94,8 +94,6 @@ docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
 ```shell
 $ docker stop react-grpc
 ```
-
-![gRPC Docker Compose](images/docker-compose-grpc.png)
 
 #### Requête pour changer le niveau du logger http d'envoy
 
