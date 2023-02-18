@@ -49,7 +49,7 @@ $ docker container logs java-grpc
 
 ![gRPC JAVA Docker](images/grpc-java-docker.png)
 
-#### 1.g. <u>Arrêter et supprimer java-grpc</u>
+#### 1.f. <u>Arrêter et supprimer java-grpc</u>
 
 ```shell
 $ docker stop java-grpc
