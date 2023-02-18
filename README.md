@@ -86,7 +86,7 @@ $ export NODE_OPTIONS=--openssl-legacy-provider
 ```shell
 $ cd react-grpc
 $ docker build -t react-grpc:v1 .
-docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
+$ docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
 ```
 
 #### 2.c. <u>Arrêter et supprimer react-grpc</u>
@@ -97,13 +97,13 @@ $ docker stop react-grpc
 
 #### Requête pour changer le niveau du logger http d'envoy
 
-## III. <u>Proxy Envoy</u>
+## III. <u>Network Docker</u>
+
+## IV. <u>Proxy Envoy</u>
 
 ```shell
 $ curl -X POST http://localhost:9901/logging?http=debug
 $ curl -X POST http://localhost:9901/logging?http2=debug
 ```
-
-## IV. <u>Network Docker</u>
 
 ## V. <u>Docker Compose</u>
