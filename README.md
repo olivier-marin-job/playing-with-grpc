@@ -95,11 +95,11 @@ $ docker run --name react-grpc -p 3000:3000 --rm -dit react-grpc:v1
 $ docker stop react-grpc
 ```
 
-#### Requête pour changer le niveau du logger http d'envoy
-
 ## III. <u>Network Docker</u>
 
 ## IV. <u>Proxy Envoy</u>
+
+#### Requête pour changer le niveau du logger http d'envoy
 
 ```shell
 $ curl -X POST http://localhost:9901/logging?http=debug
