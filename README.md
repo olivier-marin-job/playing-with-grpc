@@ -97,6 +97,38 @@ $ docker stop react-grpc
 
 ## III. <u>Network Docker</u>
 
+```shell
+$ docker network create --subnet=172.18.0.0/24 grpc
+
+$ docker run --name java-grpc \
+  --net grpc \
+  --ip 172.18.0.2 \
+  -p 9090:9090 \
+  --rm -dit java-grpc:v1
+
+$ docker run --name react-grpc \
+  --net grpc \
+  --ip 172.18.0.3 \
+  -p 3000:3000 \
+  --rm -dit react-grpc:v1
+```
+
+Conteneur network:
+
+![network-docker.png](images%2Fnetwork-docker.png)
+
+Conteneur backend gRPC Java:
+
+![java-grpc-ctn.png](images%2Fjava-grpc-ctn.png)
+
+Log backend gRPC Java:
+
+![java-grpc-ctn-log.png](images%2Fjava-grpc-ctn-log.png)
+
+Conteneur backend gRPC React:
+
+![react-grpc-ctn.png](images%2Freact-grpc-ctn.png)
+
 ## IV. <u>Proxy Envoy</u>
 
 #### Requête pour changer le niveau du logger http d'envoy
